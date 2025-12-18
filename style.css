@@ -1,0 +1,978 @@
+/* =========================================================
+   1. BASIS
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "wimcrouwel68";
+  src: url(./assets/WimCrouwel68.ttf);
+}
+
+:root {
+  --crouwel-font: wimcrouwel68;
+  --bgcolor: #FBFBFB;
+  --textcolor: #1f1f1f;
+  --accentcolor:#00f900;
+}
+
+
+body {
+  font-family: monospace;
+  background:var(--bgcolor);
+  color: #2F2E38;
+  max-width: 100vw;
+  margin: 2rem;
+
+}
+
+.text {
+  margin-block: 2em;
+}
+
+
+
+/* =========================================================
+   2. HEADER (INDEX + PROJECT PAGINA'S)
+   ========================================================= */
+
+header {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  gap: 2rem;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: clamp(2rem, 8vw, 5.5rem);
+  font-weight: 900;
+  text-transform: lowercase;
+  font-family: var(--crouwel-font);
+  border: 1px solid var(--textcolor);
+  padding-right: 4rem;
+  padding-left: 0.5rem;
+  background-color: #00f900;
+}
+
+a {
+  text-decoration: none;
+  color: var(--textcolor);
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.8rem;
+  text-transform: lowercase;
+  padding: 0.25em 0.9em;
+  border: 1px solid var(--textcolor);
+  background: transparent;
+  color: var(--textcolor);
+  line-height: 1;
+  height: fit-content;
+  margin-top: 0.4rem;
+  transition: 0.3s ease;
+  white-space: nowrap;
+  transform: scale(1);
+  background-color: var(--bgcolor);
+ 
+}
+
+
+
+button:hover {
+  background: var(--textcolor);
+  color: var(--bgcolor);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+
+
+/* =========================================================
+   3. INDEX PAGINA – GRID LAYOUT
+   ========================================================= */
+
+.grid-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.grid-image {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-image img,
+.grid-image video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* TYPOGRAPHY AFBEELDING RESPONSIVE */
+.grid-section:first-of-type img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Visual Language — 2 images */
+.grid-section:nth-of-type(3) .grid-image img {
+  width: 48%;
+}
+
+/* Animations — 3 videos */
+.grid-section:nth-of-type(4) .grid-image video {
+  width: 32%;
+}
+
+
+
+.grid-section:last-of-type .grid-image img {
+  width: 48%;
+}
+
+.grid-text h2 {
+  font-family: var(--crouwel-font);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.grid-text p {
+  text-align: justify;
+}
+
+
+.made-with {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.made-with span {
+  border: 1px solid var(--textcolor);
+  padding: 0.4rem 0.8rem;
+  text-transform: lowercase;
+  font-size: 0.85rem;
+  background: transparent;
+  font-family: var(--crouwel-font);
+
+}
+
+
+
+/* =========================================================
+   4. MARQUEE
+   ========================================================= */
+
+.content {
+  color: #fff;
+}
+
+.marquee {
+  position: relative;
+  width: 100vw;
+  height: 2em;
+  font-size: 5em;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.marquee_text {
+  position: absolute;
+  min-width: 100%;
+  white-space: nowrap;
+  animation: marquee 16s infinite linear;
+}
+
+@keyframes marquee {
+  from { translate: 70%; }
+  to { translate: -70%; }
+}
+
+.marquee_blur {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background-color: #00f900;
+  background-image:
+    linear-gradient(to right, white -10rem, transparent 30%),
+    linear-gradient(to left, white 1rem, transparent 50%);
+  filter: contrast(15);
+}
+
+.marquee_blur p {
+  filter: blur(0.07em);
+}
+
+.marquee_clear {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+
+
+
+/* =========================================================
+   8. ABOUT ME PAGE
+   ========================================================= */
+
+/* Border en hoekbolletjes voor About Me wrapper */
+.aboutme-wrapper {
+  position: relative;
+  border: 1px solid var(--textcolor); /*zelfde border als project-secties*/
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto; /* center horizontaal en wat ruimte boven en onder */
+}
+
+/* Container voor de hoekbolletjes */
+.aboutme-wrapper .corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* laat klikken door de bolletjes heen */
+}
+
+/* Hoekbolletjes */
+.aboutme-wrapper .corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--textcolor);
+  border-radius: 50%;
+}
+
+/* 4 posities */
+.aboutme-wrapper .tl { top: -5px; left: -5px; }
+.aboutme-wrapper .tr { top: -5px; right: -5px; }
+.aboutme-wrapper .bl { bottom: -5px; left: -5px; }
+.aboutme-wrapper .br { bottom: -5px; right: -5px; }
+
+
+.aboutme .aboutme-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bgcolor); 
+}
+
+
+.aboutme .about {
+  width: 100%;
+  max-width: 600px;
+}
+
+.aboutme .about h2 {
+  font-family: var(--crouwel-font);
+  font-size: 3vw;
+  margin-bottom: 1rem;
+}
+
+.aboutme .about h2:nth-child(2) {
+  margin-bottom: 2rem;
+}
+
+.aboutme p {
+  line-height: 1.7;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+
+
+body.aboutme {
+  background-image: url(./assets/stempelhoofd.png); /* vervang door jouw afbeelding */
+  background-repeat: repeat; /* herhaalt de afbeelding zowel horizontaal als verticaal */
+  background-size: 300px 300px; /* grootte van één herhaling, pas aan */
+  background-position: top left; /* startpositie */
+  
+}
+
+
+/* Zorg dat de About Me content boven de achtergrond staat */
+body.aboutme .aboutme-wrapper,
+body.aboutme .aboutme-content {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+/* =========================================================
+   8. typography page
+   ========================================================= */
+/* algemene spacing */
+.typo-section {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+/* GRID LAYOUT */
+.typo-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* tekst styling */
+.typo-grid h2 {
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+
+.typo-grid p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* afbeeldingen */
+.typo-grid img,
+.typo-grid video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Section 3 – video + poster */
+.typo-side-by-side {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.typo-side-by-side video {
+  max-width: 50rem;
+}
+
+.typo-side-by-side img {
+  max-width: 20rem;
+}
+
+  
+
+/* =========================================================
+  grid & color
+   ========================================================= */
+
+.beatrepeat_fotos, .beatrepeat_text {
+    display: flex;
+    flex-direction: column;   /* onder elkaar */
+    align-items: center;      /* horizontaal centreren */
+    justify-content: center;  /* verticaal (alleen als er hoogte was) */
+    gap: 2rem;                /* ruimte tussen de foto's */
+    margin-top: 2rem;
+}
+
+.beatrepeat_fotos img {
+    width: 40rem;
+    max-width: 90%;           /* responsive */
+    height: auto;
+}
+
+/* Container voor titel + tekst */
+.beatrepeat_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Titel links uitlijnen maar wel centreren als blok */
+.beatrepeat_text h2 {
+    width: 40rem;
+    max-width: 90%;
+    text-align: left;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+/* Paragraaf zelfde breedte als de afbeeldingen */
+.beatrepeat_text p {
+    width: 40rem;
+    max-width: 90%;
+    text-align: left;
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+
+/* Interactive interface pagina */
+
+.interactive_fotos, .interactive_text {
+    display: flex;
+    flex-direction: column;   /* onder elkaar */
+    align-items: center;      /* horizontaal centreren */
+    justify-content: center;  /* verticaal (alleen als er hoogte was) */
+    gap: 2rem;                /* ruimte tussen de foto's */
+    margin-top: 2rem;
+}
+
+.interactive_fotos video {
+    width: 40rem;
+    max-width: 90%;           /* responsive */
+    height: auto;
+}
+
+/* Container voor titel + tekst */
+.interactive_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Titel links uitlijnen maar wel centreren als blok */
+.interactive_text h2 {
+    width: 40rem;
+    max-width: 90%;
+    text-align: left;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+/* Paragraaf zelfde breedte als de afbeeldingen */
+.interactive_text p {
+    width: 40rem;
+    max-width: 90%;
+    text-align: left;
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+
+
+/* ================================================
+  animatie pagina
+   ================================================ */
+
+.video-page .video-intro {   
+    text-align: left;
+    max-width: 800px;
+    margin: 3rem auto;
+}
+
+.video-page .video-intro h2 {
+    font-family: var(--crouwel-font);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.video-page .video-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--textcolor);
+}
+
+
+/* Video + tekst naast elkaar */
+.video-page .video-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+
+/* Verticale video styling */
+.video-page .video-block video {
+    width: 20rem;
+    max-width: 35vw;
+    height: auto;
+    background: black;
+}
+
+
+/* Tekst naast video */
+.video-page .video-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-page .video-text h3 {
+    font-family: var(--crouwel-font);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+
+.video-page .video-text p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 90%;
+}
+
+
+.video-page .video-block {
+    position: relative;                /* nodig voor hoekbolletjes */
+    border: 1px solid var(--textcolor);
+    padding: 2rem;
+    border-radius: 0;                  /* sluit aan bij je stijl */
+}
+
+/* Container voor hoekbolletjes */
+.video-page .video-block .corners {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* Hoekbolletjes */
+.video-page .video-block .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--textcolor);
+    border-radius: 50%;
+}
+
+/* 4 posities */
+.video-page .video-block .tl { top: -5px; left: -5px; }
+.video-page .video-block .tr { top: -5px; right: -5px; }
+.video-page .video-block .bl { bottom: -5px; left: -5px; }
+.video-page .video-block .br { bottom: -5px; right: -5px; }
+
+
+
+/* stukje index poster */
+
+.grid-section.posters-project .grid-image {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.grid-section.posters-project img {
+    width: 16.5rem; 
+    height: auto;
+    object-fit: cover;
+}
+
+
+
+/* =============================================
+   poster page
+   ============================================= */
+
+.posters_fotos{
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.posters_fotos img {
+  width: 20rem;       
+  max-width: 100%;   
+  height: auto;
+  display: block;
+}
+
+.posters_text h2{
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+/* ===============================================
+   illustatie pagina
+   =============================================== */
+
+
+/* Wrapper met border + hoekbolletjes */
+.gallery-wrapper {
+  position: relative;
+  border: 1px solid var(--textcolor);
+  padding: 2rem;
+  max-width: 1300px;
+  margin: 4rem auto;
+  text-align: left;
+}
+
+/* Hoekbolletjes */
+.gallery-wrapper .corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.gallery-wrapper .corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--textcolor);
+  border-radius: 50%;
+}
+
+/* Posities */
+.gallery-wrapper .tl { top: -5px; left: -5px; }
+.gallery-wrapper .tr { top: -5px; right: -5px; }
+.gallery-wrapper .bl { bottom: -5px; left: -5px; }
+.gallery-wrapper .br { bottom: -5px; right: -5px; }
+
+/* Titel + tekst */
+.gallery-wrapper h2 {
+  font-family: var(--crouwel-font);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-wrapper p {
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.6;
+  color: var(--textcolor);
+}
+
+/* Afbeeldingengrid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid var(--textcolor);
+}
+
+
+/* beeldtaal page */
+
+.beeldtaal_body {
+  font-family: monospace;
+  background: #FBFBFB;
+  color: #1f1f1f;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* Title + paragraph */
+.beeldtaal_h2 {
+  font-family: wimcrouwel68, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.beeldtaal_p {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* IMAGE WRAPPER */
+.poster-frame {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+/* Two images side-by-side */
+.poster-images {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.poster-images img {
+  width: 48%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border: 1px solid #1f1f1f;
+}
+
+
+
+
+
+
+/* =========================================================
+   8. mediaquery mobiel
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+
+  body{
+    margin: 2rem;
+  }
+  
+  header h1 {
+    font-size: clamp(1.5rem, 8vw, 3rem); 
+    padding: 0.2rem 0.5rem;               
+    line-height: 1.2;
+    white-space: normal;                 
+    overflow: visible;                    
+  }
+
+  header button {
+    padding: 0.25em 0.8em;
+    font-size: 0.78rem;
+  }
+
+  body.aboutme p,
+  .grid-text p {
+    font-size: 0.8rem;     
+    line-height: 1.6;   
+  }
+
+  body.aboutme h2,
+  .grid-text h2 {
+    font-size: 1.4rem;   
+    line-height: 1.4;
+  }
+
+    .typo-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .typo-side-by-side {
+    grid-template-columns: 1fr;
+  }
+
+  .typo-grid h2 {
+    font-size: 1.8rem;
+  }
+
+  .typo-section {
+    margin: 3rem auto;
+  }
+
+
+
+  .grid-section {
+    grid-template-columns: 1fr;
+  }
+
+
+  .grid-section:nth-of-type(4) .grid-image {
+    flex-direction: column;
+  }
+
+  .grid-section:nth-of-type(4) .grid-image video {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  .grid-text h2 {
+    font-size: 1.4rem;
+  }
+
+}
+
+
+.project-video {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.project-video video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+
+.project-info h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.project-info p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: justify;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+.grid-section {
+  position: relative;
+  border: 1px solid var(--textcolor);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.grid-section .corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.grid-section .corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--textcolor);
+  border-radius: 50%;
+}
+
+
+.grid-section .tl { top: -5px; left: -5px; }
+.grid-section .tr { top: -5px; right: -5px; }
+.grid-section .bl { bottom: -5px; left: -5px; }
+.grid-section .br { bottom: -5px; right: -5px; }
+
+
+
+    .video-page .video-intro {
+        max-width: 90%;
+        margin: 2rem auto;
+        text-align: center;
+    }
+
+    .video-page .video-intro h2 {
+        font-size: 1.6rem;
+    }
+
+    .video-page .video-intro p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .video-page .video-block {
+        flex-direction: column;
+        align-items: center;     
+        gap: 1.5rem;
+        padding: 1.5rem;         
+        max-width: 95%;
+    }
+
+
+    .video-page .video-block video {
+        width: 100%;           
+        max-width: 22rem;         
+        height: auto;
+    }
+
+
+    .video-page .video-text {
+        align-items: center;      
+        text-align: center;
+    }
+
+    .video-page .video-text h3 {
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+    }
+
+    .video-page .video-text p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        max-width: 95%;
+    }
+
+   
+    .video-page .video-block .corner {
+        width: 8px;
+        height: 8px;
+    }
+
+    .video-page .video-block .tl { top: -4px; left: -4px; }
+    .video-page .video-block .tr { top: -4px; right: -4px; }
+    .video-page .video-block .bl { bottom: -4px; left: -4px; }
+    .video-page .video-block .br { bottom: -4px; right: -4px; }
+
+    
+
+/* =====================================================
+   RESPONSIVE RULES FOR 30 IMAGE GALLERY
+   ===================================================== */
+
+/* Tablet — iets groter en ruimer */
+  .gallery-30 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  .gallery-30 img {
+    height: 140px;
+    padding: 0.4rem;
+  }
+
+/* Kleine tablets + grote telefoons */
+@media (max-width: 700px) {
+  .gallery-30 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .gallery-30 img {
+    height: 130px;
+  }
+}
+
+/* Mobiel — 2 kolommen, grote duidelijke foto’s */
+@media (max-width: 500px) {
+  .gallery-30 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .gallery-30 img {
+    height: 120px;   /* schaalt fijn mee */
+    padding: 0.3rem;
+  }
+}
+
+/* Extra klein mobiel — 1 kolom */
+@media (max-width: 350px) {
+  .gallery-30 {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-30 img {
+    height: 200px;
+  }
+}
+
